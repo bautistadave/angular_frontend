@@ -1,0 +1,107 @@
+<div class="modal" tabindex="-1" role="dialog"
+        [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Usuarios</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closePopup()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <form [formGroup]="usuariosForm">
+            <div class="form-group row">
+              <label for="nombres" class="col-sm-4 col-form-label">Nombres:</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control form-control-sm" id="nombres" 
+                      placeholder="Nombres" 
+                      formControlName="nombres" required> 
+                      
+                </div>
+            </div>
+            <div class="form-group row">
+              <label for="apellidos" class="col-sm-4 col-form-label">Apellidos:</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control-sm" id="apellidos" 
+                      placeholder="Apellidos"
+                      formControlName="apellidos" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="direccion" class="col-sm-4 col-form-label">Dirección:</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control-sm" id="direccion" 
+                     placeholder="Dirección"
+                     formControlName="direccion" required>
+                </div>
+            </div>
+             
+            <div class="form-group row">
+                <label for="telefono" class="col-sm-4 col-form-label">Telefono:</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control form-control-sm" id="telefono" 
+                       placeholder="Telefono"
+                       formControlName="telefono" required>
+                  </div>
+              </div>
+
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button *ngIf="btnSaveShow"
+              class="btn btn-success btn-sm" type="submit" 
+              [disabled]="usuariosForm.invalid"
+              (click)="add()"
+        >
+          Guardar 
+        </button>
+
+        <button *ngIf="btnUpdateShow"
+              class="btn btn-success btn-sm" type="submit" 
+              [disabled]="usuariosForm.invalid"
+              (click)="update()"
+        >
+          Modificar 
+        </button>
+        <button class="btn btn-primary btn-sm" (click)="closePopup()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <div class="alert alert-light text-center" role="alert">
+    USUARIOS
+  </div>
+ <div class="container">
+  
+  <button class="btn btn-primary" (click)="openPopup()"> Nuevo </button>
+  
+  <table class="table table-bordered table-sm mt-4">
+    <thead>
+      <tr>
+        <!-- <th scope="col">#</th> -->
+        <th scope="col">Nombres</th>
+        <th scope="col">Apellidos</th>
+        <th scope="col">Direccion</th>
+        <th scope="col">Telefono</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of usuariosList">
+        
+        <td>{{ usuario.nombres }}</td>
+        <td>{{ usuario.apellidos }}</td>
+        <td>{{ usuario.direccion }}</td>
+        <td>{{ usuario.telefono }}</td>
+        <td>
+          <button class="btn btn-success btn-sm" (click)="edit(usuario)">Editar</button>
+          <button class="btn btn-danger btn-sm" (click)="delete(usuario)">Eliminar</button>   
+      </tr>
+    </tbody>
+  </table> 
+</div>  
+  
